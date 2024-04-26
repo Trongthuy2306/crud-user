@@ -1,6 +1,6 @@
 import { AggregateRoot } from '@nestjs/cqrs';
-import { UserCreatedEvent } from '../event/user.event';
-import { GetListUserDto } from '../dtos/get.list.user.dto';
+import { GetListUserDto } from '../dtos/get.list.user.dto.query';
+import { UserGetListEvent } from '../event/user.event.query';
 
 export class UserAggregateModel extends AggregateRoot {
   constructor(
@@ -10,6 +10,6 @@ export class UserAggregateModel extends AggregateRoot {
   }
 
   createItem() {
-    this.apply(new UserCreatedEvent(this.es));
+    this.apply(new UserGetListEvent(this.es));
   }
 }

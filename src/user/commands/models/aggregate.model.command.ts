@@ -1,7 +1,7 @@
 import { AggregateRoot } from '@nestjs/cqrs';
 
-import { UserCreatedEvent } from '../event/user.event';
-import { CreateUserDto } from '../dtos/create.user.dto';
+import { UserCreatedEvent } from '../event/user.event.command';
+import { CreateUserDto } from '../dtos/create.user.dto.command';
 
 export class UserAggregateModel extends AggregateRoot {
   constructor(

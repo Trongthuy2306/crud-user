@@ -1,14 +1,14 @@
 import { Module } from '@nestjs/common';
-import { UserController } from './user.command.controller';
+import { UserController } from './user.query.controller';
 import { MongooseModule } from '@nestjs/mongoose';
-import { User, UserSchema } from '../schemas/user.schema';
-import { UserRepository } from './repositorys/user.repository.command';
+import { UserSchema } from '../schemas/user.schema';
 import { ConfigModule } from '@nestjs/config';
-import { CommandBus, CqrsModule, EventPublisher } from '@nestjs/cqrs';
-import { UserCommandHandler } from './handler';
+import { CqrsModule } from '@nestjs/cqrs';
 import { UserEvent } from './event';
 import { UtilsService } from '../utils/utils.service';
-import { UserService } from './user.command.service';
+import { UserService } from './user.qurey.service';
+import { UserQueryRepository } from './repositorys/user.query.repository';
+import { UserQueyHandler } from './handler';
 
 
 @Module({
@@ -32,9 +32,9 @@ import { UserService } from './user.command.service';
   ],
   controllers: [UserController],
   providers: [
-    UserRepository, UserService, UtilsService,
-    ...UserCommandHandler,
+    UserQueryRepository, UserService, UtilsService,
+    ...UserQueyHandler,
     ...UserEvent
   ]
 })
-export class UserModuleCommand { }
+export class UserModuleQuery { }

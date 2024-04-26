@@ -12,9 +12,9 @@ export class UserRepository {
     async createUser(email: string, first_name: string, last_name: string): Promise<any> {
         return this.userModel.create({ email, first_name, last_name })
     }
-    async findAll(): Promise<User[]> {
-        return this.userModel.find().exec();
-    }
+    // async findAll(): Promise<User[]> {
+    //     return this.userModel.find();
+    // }
 
     // async findById(id: string): Promise<User> {
     //     return this.userModel.findById(id).exec();

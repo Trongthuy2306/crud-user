@@ -1,8 +1,8 @@
 import { CommandHandler, EventPublisher, ICommandHandler } from "@nestjs/cqrs";
 import { CreateUserCommand, DeleteUserCommand } from "../create.user.command";
-import { UserRepository } from "../repositorys/user.repository";
+import { UserRepository } from "../repositorys/user.repository.command";
 import { UtilsService } from "../../utils/utils.service";
-import { UserAggregateModel } from "../models/aggregate.model";
+import { UserAggregateModel } from "../models/aggregate.model.command";
 
 @CommandHandler(CreateUserCommand)
 export class CreateUserHandler implements ICommandHandler<CreateUserCommand> {

@@ -1,22 +1,21 @@
 import { User } from '../schemas/user.schema';
 import { Injectable } from '@nestjs/common';
-import { UtilsService } from '../utils/utils.service';
-import { CreateUserDto } from './dtos/create.user.dto.command';
-import { CommandBus } from '@nestjs/cqrs';
-import { CreateUserCommand } from './create.user.command';
+import { UserQueryRepository } from './repositorys/user.query.repository';
 
 @Injectable()
 export class UserService {
     constructor(
-        private readonly utils: UtilsService,
-        private readonly commandBus: CommandBus,
+        private readonly userQueryRepo: UserQueryRepository
     ) { }
 
-    async create(command: CreateUserDto): Promise<User> {
-        const commandId = this.utils.generateNanoID();
-        const { email, first_name, last_name } = command;
-        return await this.commandBus.execute(new CreateUserCommand(commandId, email, first_name, last_name));
+    async getAll(): Promise<User[]> {
+        // const commandId = this.utils.generateNanoID();
+
+        return await this.userQueryRepo.findAll();
     }
+    // async getAllUsers() {
+    //     return this.queryBus.execute(new GetListUserQuery());
+    // }
 
     // async getListUser(): Promise<User[]> {
     //     const entityId = this.utils.generateUUID();

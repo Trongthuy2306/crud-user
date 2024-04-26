@@ -1,4 +1,4 @@
-import { CreateUserDto } from "../dtos/create.user.dto";
+import { CreateUserDto } from "../dtos/create.user.dto.command";
 
 export class UserCreatedEvent {
     constructor(
